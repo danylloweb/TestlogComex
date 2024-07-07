@@ -1,0 +1,15 @@
+/logComex/public/hot
+/logComex/public/storage
+/logComex/storage/*.key
+/logComex/vendor
+/logComex/.env
+/logComex/.phpunit.result.cache
+/logComex/Homestead.json
+/logComex/Homestead.yaml
+/logComex/npm-debug.log
+/logComex/yarn-error.log
+/.idea
+/.vscode
+/.docker
+/data/mysql/
+/data/db/
