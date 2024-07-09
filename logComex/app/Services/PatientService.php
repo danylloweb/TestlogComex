@@ -38,7 +38,7 @@ class PatientService extends AppService
             ->pushCriteria(app(FilterByTypeCriteria::class))
             ->pushCriteria(app(FilterByStatusCriteria::class))
             ->pushCriteria(app(AppRequestCriteria::class))
-            ->paginate($limit);
+            ->paginate(9999);
     }
 
 }

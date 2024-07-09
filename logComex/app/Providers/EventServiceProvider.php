@@ -2,9 +2,11 @@
 
 namespace App\Providers;
 
+use App\Entities\Product;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Event;
 
 class EventServiceProvider extends ServiceProvider
@@ -25,9 +27,25 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        $this->afterCreatedModels();
     }
 
+    /**
+     * afterCreatedModels
+     */
+    private function afterCreatedModels()
+    {
+        Product::created(function () {
+            Cache::store('redis')->tags('products')->flush();
+        });
+        Product::updated(function () {
+            Cache::store('redis')->tags('products')->flush();
+        });
+        Product::deleted(function () {
+            Cache::store('redis')->tags('products')->flush();
+        });
+
+    }
     /**
      * Determine if events and listeners should be automatically discovered.
      */

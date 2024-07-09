@@ -53,6 +53,7 @@
               ></v-text-field>
             </v-card-text>
           </v-card>
+
           <v-data-table
             :headers="headers"
             :items="products"
@@ -154,6 +155,7 @@
               <v-icon size="small" @click="deleteItem(item)">mdi-delete</v-icon>
             </template>
           </v-data-table>
+
         </v-col>
       </v-row>
     </v-container>
@@ -171,7 +173,7 @@ export default {
       currentPage: 1,
       numberOfPages: 0,
       itemsPerPage: 20,
-      totalOfRows: 0,
+      totalOfRows: 9999,
       totalpages: 0,
       pageFrom: 0,
       pageTo: 0,
@@ -270,12 +272,11 @@ export default {
         }
       axios.get(url)
         .then(response => {
-          this.products = response.data.data;
-          this.currentPage = response.data.meta.pagination.current_page;
-          this.numberOfPages = response.data.meta.pagination.total_pages;
-          this.itemsPerPage = response.data.meta.pagination.per_page;
-          this.totalOfRows = response.data.meta.pagination.total;
-          this.totalpages = response.data.meta.pagination.total_pages;
+          this.products       = response.data.data;
+          this.currentPage    = response.data.meta.pagination.current_page;
+          this.numberOfPages  = response.data.meta.pagination.total_pages;
+          this.totalOfRows    = response.data.meta.pagination.total;
+          this.totalpages     = response.data.meta.pagination.total_pages;
           this.isLoadingTable = false;
 
         })
