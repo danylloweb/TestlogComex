@@ -6,10 +6,10 @@ use Prettus\Repository\Contracts\CriteriaInterface;
 use Prettus\Repository\Contracts\RepositoryInterface;
 
 /**
- * Class FilterByStatusCriteria
+ * Class FilterByTypeCriteria
  * @package namespace App\Criteria;
  */
-class FilterByStatusCriteria extends AppCriteria implements CriteriaInterface
+class FilterByTypeCriteria extends AppCriteria implements CriteriaInterface
 {
     /**
      * @param $model
@@ -18,10 +18,9 @@ class FilterByStatusCriteria extends AppCriteria implements CriteriaInterface
      */
     public function apply($model, RepositoryInterface $repository)
     {
-        $status = $this->request->query->get('status');
-        if ($status) {
-            $status = $status == 'Ativo' ? 1 : 0;
-            $model = $model->where('status', $status);
+        $type = $this->request->query->get('type');
+        if ($type) {
+            $model = $model->where('type', $type);
         }
         return $model;
     }

@@ -3,6 +3,10 @@
 namespace App\Services;
 
 use App\Criterias\AppRequestCriteria;
+use App\Criterias\FilterByPriceCriteria;
+use App\Criterias\FilterByStatusCriteria;
+use App\Criterias\FilterByTypeCriteria;
+use App\Criterias\FilterByWarrantyCriteria;
 use App\Repositories\ProductRepository;
 use Prettus\Repository\Exceptions\RepositoryException;
 
@@ -29,6 +33,10 @@ class PatientService extends AppService
     {
         return $this->repository
             ->resetCriteria()
+            ->pushCriteria(app(FilterByWarrantyCriteria::class))
+            ->pushCriteria(app(FilterByPriceCriteria::class))
+            ->pushCriteria(app(FilterByTypeCriteria::class))
+            ->pushCriteria(app(FilterByStatusCriteria::class))
             ->pushCriteria(app(AppRequestCriteria::class))
             ->paginate($limit);
     }

@@ -29,7 +29,7 @@ class ProductTransformer extends TransformerAbstract
             'price_formated' => "R$".number_format($model->price,2,',','.'),
             'status'      => $model->status,
             'status_title'=> $model->status == 1 ? 'Ativo':'Inativo',
-            'type_title'  => $model->type == 1 ? 'Novo':'Seminovo',
+            'type_title'  => $model->type,
             'type'        => $model->type,
             'warranty'    => $model->warranty == 0 ? 'Sem garantia':$model->warranty.' ano(s)',
             'created_at'  => $model->created_at->toDateTimeString(),

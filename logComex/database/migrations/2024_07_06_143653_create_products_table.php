@@ -19,7 +19,7 @@ return new class extends Migration
             $table->decimal('price',10,2);
             $table->smallInteger('status')->default(1)->index();
             $table->smallInteger('warranty')->default(2)->index();
-            $table->char('type',20)->default('novo')->index();
+            $table->char('type',20)->default('Novo')->index();
             $table->timestamps();
             $table->softDeletes();
 		});

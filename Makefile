@@ -2,6 +2,7 @@ API=logComex
 
 install:
 	cd ./logComex/ && cp .env.example .env
+	chmod -R 777 ./logComex/storage/
 	make up
 	make compose_install
 	make migrate
