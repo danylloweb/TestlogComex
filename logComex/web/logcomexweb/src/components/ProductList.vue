@@ -34,6 +34,9 @@
               label="Preço"
               @change="loadProducts"
             ></v-select>
+            <v-btn color="primary" @click="toggleChart">
+              {{ showCharts ? 'Ocultar Gráficos' : 'Mostrar Gráficos' }}
+            </v-btn>
           </v-card>
         </v-col>
 
@@ -156,6 +159,7 @@
             </template>
           </v-data-table>
 
+          <product-charts v-if="showCharts" :products="products"></product-charts>
         </v-col>
       </v-row>
     </v-container>
@@ -165,8 +169,12 @@
 
 <script>
 import axios from 'axios'
+import ProductCharts from './ProductCharts.vue';
 
 export default {
+  components: {
+    ProductCharts,
+  },
   data() {
     return {
       products: [],
@@ -219,6 +227,7 @@ export default {
         warranty: null,
         price: null,
       },
+      showCharts: false,
     };
   },
   computed: {
@@ -370,7 +379,10 @@ export default {
 
       this.editedItem.price = valor;
       if(valor == 'NaN') this.editedItem.price = '';
-    }
+    },
+    toggleChart() {
+      this.showCharts = !this.showCharts;
+    },
   },
 };
 </script>
