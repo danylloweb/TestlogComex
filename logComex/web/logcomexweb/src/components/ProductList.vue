@@ -65,7 +65,7 @@
             :total-pages="totalOfRows"
             :next-page-label="nextPage"
             :prev-page-label="prevPage"
-            :filter-keys="['name', 'description', 'price', 'type_title', 'warranty', 'status_title']"
+            :filter-keys="['name', 'description', 'price', 'type', 'warranty', 'status_title']"
             loading-text="Carregando lista..."
             :sort-by="[{ key: 'id', order: 'asc' }]"
             @page-count="onPageCountChange"
@@ -82,7 +82,7 @@
                     <v-card-text>
                       <v-container>
                         <v-row>
-                          <v-col cols="12" sm="6" md="12">
+                          <v-col cols="12" sm="12" md="12">
                             <v-text-field
                               v-model="editedItem.name"
                               label="Nome"
@@ -105,19 +105,19 @@
                             ></v-text-field>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
-                            <v-text-field
-                              v-model="editedItem.type_title"
+                            <v-select
+                              v-model="editedItem.type"
                               label="Tipo"
                               :items="['Seminovo', 'Novo']"
                               required
-                            ></v-text-field>
+                            ></v-select>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
-                            <v-text-field
+                            <v-select
                               v-model="editedItem.warranty"
-                              label="Garantia"
+                              :items="['Sem garantia', 'Um ano', 'Mais de um ano']"
                               required
-                            ></v-text-field>
+                            ></v-select>
                           </v-col>
                           <v-col cols="12" sm="6" md="6">
                             <v-select
@@ -185,11 +185,11 @@ export default {
       item_id:0,
       service_url: 'http://localhost/',
       headers: [
-        { title: 'id', align: 'start', sortable: false, key: 'id'},
+        { title: 'id', align: 'start', sortable: true, key: 'id'},
         { title: 'Nome', key: 'name' },
         { title: 'Descrição', key: 'description' },
         { title: 'Preço R$', key: 'price_formated' },
-        { title: 'Tipo', key: 'type_title' },
+        { title: 'Tipo', key: 'type' },
         { title: 'Garantia', key: 'warranty' },
         { title: 'Status', key: 'status_title' },
         { title: 'Actions', key: 'actions', sortable: false },
